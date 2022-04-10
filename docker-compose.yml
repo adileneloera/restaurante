@@ -1,0 +1,29 @@
+version: '3'
+
+services: 
+  apache:
+    build: ./apache
+    ports: 
+      - 80:80
+    volumes:
+      - ./src:/var/www/html
+  mysql:
+    image: mysql
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=restaurante
+      - MYSQL_USER=lora
+      - MYSQL_PASSWORD=lora123
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d       
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql
+    depends_on: 
+      - mysql 
+volumes:
+  mysql_data:

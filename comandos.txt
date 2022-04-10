@@ -1,0 +1,12 @@
+docker images
+docker ps
+
+d:
+cd serra\Documents\ELIUD\docker
+docker-compose up -d
+docker-compose stop
+
+
+docker tag docker_apache:latest adileneloera
+docker pull adileneloera/website:1.0
+docker run adileneloera/website:1.1
